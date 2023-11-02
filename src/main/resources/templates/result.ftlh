@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Page</title>
+</head>
+<body>
+<h1>Ответ от сервера</h1>
+<p>${response}</p>
+<a href="http://localhost:8080">Вернуться</a>
+</body>
+</html>
