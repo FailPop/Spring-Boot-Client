@@ -1,0 +1,20 @@
+
+g	java:S112:"FDefine and throw a dedicated exception instead of using a generic one.(¼–ÕÌúÿÿÿÿ8÷£ìà¹1
+b
+java:S2259K"FA "NullPointerException" could be thrown; "response" is nullable here.(¹ç¹H8Œ¤ìà¹1
+>
+java:S55423"Use a secure padding scheme.(»¦µªúÿÿÿÿ8“¤ìà¹1
+V
+java:S47196"9Replace charset name argument with StandardCharsets.UTF_8(æ‹éª8–¤ìà¹1
+U
+java:S4719K"9Replace charset name argument with StandardCharsets.UTF_8(¹ç¹H8›¤ìà¹1
+Z
+java:S4719K">Replace charset name argument with StandardCharsets.ISO_8859_1(¹ç¹H8›¤ìà¹1
+O
+java:S1128"2Remove this unused import 'java.security.KeyPair'.(üúì›8›¤ìà¹1
+]
+java:S1128";Remove this unused import 'java.security.KeyPairGenerator'.(åÚ¼–úÿÿÿÿ8›¤ìà¹1
+O
+java:S1068"3Remove this unused "clientPublicKey" private field.(Öã‰C8›¤ìà¹1
+Q
+java:S1068"4Remove this unused "clientPrivateKey" private field.(Ãı¡¡8œ¤ìà¹1
