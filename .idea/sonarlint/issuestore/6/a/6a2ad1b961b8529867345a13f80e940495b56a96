@@ -1,20 +1,48 @@
 
-g	java:S112:"FDefine and throw a dedicated exception instead of using a generic one.(¼–ÕÌúÿÿÿÿ8÷£ìà¹1
-b
-java:S2259K"FA "NullPointerException" could be thrown; "response" is nullable here.(¹ç¹H8Œ¤ìà¹1
+g	java:S112E"FDefine and throw a dedicated exception instead of using a generic one.(¼–ÕÌúÿÿÿÿ8çê„ä¹1
+Y
+java:S2629$"7Use the built-in formatting to construct this argument.(½Øßúÿÿÿÿ8Àùã¹1
+Y
+java:S2629&"7Use the built-in formatting to construct this argument.(Í±Õÿÿÿÿÿÿ8‘Àùã¹1
+Y
+java:S2629:"7Use the built-in formatting to construct this argument.(©—°ìÿÿÿÿÿ8‘Àùã¹1
+Y
+java:S2629@"7Use the built-in formatting to construct this argument.(ö›Œ¤şÿÿÿÿ8‘Àùã¹1
+Y
+java:S2629H"7Use the built-in formatting to construct this argument.(Š™•şùÿÿÿÿ8Æñ…ä¹1
+T
+java:S2629J"7Use the built-in formatting to construct this argument.(ê¶Ÿ8”€‡ä¹1
+Y
+java:S2629X"7Use the built-in formatting to construct this argument.(Í±Õÿÿÿÿÿÿ8Ì³Šä¹1
+S
+java:S2629["7Use the built-in formatting to construct this argument.(½½¿8²íä¹1
+c
+java:S2259Z"FA "NullPointerException" could be thrown; "response" is nullable here.(ï«¹¶8Àùã¹1
+c
+java:S3457$"AFormat specifiers should be used instead of string concatenation.(½Øßúÿÿÿÿ8¡Àùã¹1
+c
+java:S3457&"AFormat specifiers should be used instead of string concatenation.(Í±Õÿÿÿÿÿÿ8¡Àùã¹1
+c
+java:S3457:"AFormat specifiers should be used instead of string concatenation.(©—°ìÿÿÿÿÿ8¤Àùã¹1
 >
-java:S55423"Use a secure padding scheme.(»¦µªúÿÿÿÿ8“¤ìà¹1
+java:S5542<"Use a secure padding scheme.(»¦µªúÿÿÿÿ8¤Àùã¹1
 V
-java:S47196"9Replace charset name argument with StandardCharsets.UTF_8(æ‹éª8–¤ìà¹1
-U
-java:S4719K"9Replace charset name argument with StandardCharsets.UTF_8(¹ç¹H8›¤ìà¹1
-Z
-java:S4719K">Replace charset name argument with StandardCharsets.ISO_8859_1(¹ç¹H8›¤ìà¹1
+java:S4719?"9Replace charset name argument with StandardCharsets.UTF_8(¥ˆ†É8¤Àùã¹1
+c
+java:S3457@"AFormat specifiers should be used instead of string concatenation.(ö›Œ¤şÿÿÿÿ8¤Àùã¹1
+c
+java:S3457H"AFormat specifiers should be used instead of string concatenation.(Š™•şùÿÿÿÿ8Úñ…ä¹1
+^
+java:S3457J"AFormat specifiers should be used instead of string concatenation.(ê¶Ÿ8¥€‡ä¹1
+c
+java:S3457X"AFormat specifiers should be used instead of string concatenation.(Í±Õÿÿÿÿÿÿ8â³Šä¹1
+V
+java:S4719Z"9Replace charset name argument with StandardCharsets.UTF_8(ï«¹¶8§Àùã¹1
 O
-java:S1128"2Remove this unused import 'java.security.KeyPair'.(üúì›8›¤ìà¹1
+java:S1128"2Remove this unused import 'java.security.KeyPair'.(üúì›8şê„ä¹1
 ]
-java:S1128";Remove this unused import 'java.security.KeyPairGenerator'.(åÚ¼–úÿÿÿÿ8›¤ìà¹1
+java:S1128";Remove this unused import 'java.security.KeyPairGenerator'.(åÚ¼–úÿÿÿÿ8şê„ä¹1
 O
-java:S1068"3Remove this unused "clientPublicKey" private field.(Öã‰C8›¤ìà¹1
+java:S1068"3Remove this unused "clientPublicKey" private field.(Öã‰C8¨Àùã¹1
 Q
-java:S1068"4Remove this unused "clientPrivateKey" private field.(Ãı¡¡8œ¤ìà¹1
+java:S1068"4Remove this unused "clientPrivateKey" private field.(Ãı¡¡8¨Àùã¹1
