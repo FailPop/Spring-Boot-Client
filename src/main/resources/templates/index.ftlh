@@ -1,14 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Input Page</title>
+    <style>
+        body {
+            background-color: #2e2e2e; /* Цвет фона */
+            color: #ffffff; /* Цвет текста */
+        }
+        textarea {
+            width: 33.33vw;
+            height: 85vh;
+            resize: none;
+            overflow: auto;
+            background-color: #616161; /* Цвет фона текстового поля */
+            color: #ffffff; /* Цвет текста в текстовом поле */
+            border: 1px solid #ccc; /* Цвет рамки текстового поля */
+        }
+        button {
+            background-color: #4e586e; /* Цвет фона кнопки */
+            color: #fff; /* Цвет текста на кнопке */
+            border: none; /* Убираем рамку у кнопки */
+            border-radius: 5px 5px 5px 5px;
+        }
+        button:hover {
+            background-color: #333; /* Цвет фона кнопки при наведении */
+        }
+    </style>
 </head>
 <body>
 <h1>Введите сообщение</h1>
 <form action="/sendMessage" method="post">
-    <input type="text" name="message" placeholder="Ваше сообщение" required>
+    <textarea type="text" name="message" placeholder="Ваше сообщение" required></textarea>
     <button type="submit">Отправить</button>
 </form>
 </body>

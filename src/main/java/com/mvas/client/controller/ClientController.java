@@ -5,14 +5,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import javax.crypto.Cipher;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyFactory;
 import java.security.KeyPair;
@@ -20,79 +19,63 @@ import java.security.KeyPairGenerator;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 @Controller
 public class ClientController {
-    private static final Logger logger = LogManager.getLogger(ClientController.class);
     private RSAPublicKey clientPublicKey;
     private RSAPrivateKey clientPrivateKey;
 
     @PostMapping("/sendMessage")
     public String sendMessage(@RequestBody String message, Model model) {
         try {
-            logger.info("/sendMessage");
-            String encryptedMessage = encryptWithServerPublicKey(message);
-            logger.info("EncryptedMessage: " + encryptedMessage);
-            String response = sendEncryptedMessageToServer(encryptedMessage);
-            logger.info("Response: " + response);
-
+            System.out.println(message);
+            List<String> encryptedBlocks = encryptWithServerPublicKey(message);
+            String response = sendEncryptedBlocksToServer(encryptedBlocks);
             model.addAttribute("response", "Сообщение получено: " + response);
-            logger.info("Model add Attribute response");
-
+            System.out.println(response);
         } catch (Exception e) {
             model.addAttribute("response", "Error: " + e.getMessage());
         }
-
         return "result";
     }
 
-    private String encryptWithServerPublicKey(String message) throws Exception {
-        logger.info("Encrypt With Server Public Key");
+    private List<String> encryptWithServerPublicKey(String message) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
         String serverUrl = "http://localhost:8081/getServerPublicKey";
-        logger.info("POST for object");
         String serverPublicKeyBase64 = restTemplate.postForObject(serverUrl, null, String.class);
-
         RSAPublicKey serverPublicKey = decodeRSAPublicKey(serverPublicKeyBase64);
-        logger.info("Server Public Key: " + serverPublicKey);
-
-        Cipher cipher = Cipher.getInstance("RSA");
+        Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING");
         cipher.init(Cipher.ENCRYPT_MODE, serverPublicKey);
 
-        byte[] encryptedBytes = cipher.doFinal(message.getBytes("UTF-8")); // Указываем кодировку
-        logger.info("Encrypted Bytes: " + encryptedBytes);
+        byte[] messageBytes = message.getBytes(StandardCharsets.UTF_8);
+        int inputLen = messageBytes.length;
+        int blockSize = 245;
+        List<String> encryptedBlocks = new ArrayList<>();
 
-        return Base64.getEncoder().encodeToString(encryptedBytes);
+        for (int i = 0; i < inputLen; i += blockSize) {
+            int currentBlockSize = Math.min(blockSize, inputLen - i);
+            byte[] block = cipher.doFinal(messageBytes, i, currentBlockSize);
+            encryptedBlocks.add(Base64.getEncoder().encodeToString(block));
+        }
+
+        return encryptedBlocks;
     }
 
     private RSAPublicKey decodeRSAPublicKey(String publicKeyBase64) throws Exception {
-        logger.info("Decode RSA Public Key");
         byte[] publicKeyBytes = Base64.getDecoder().decode(publicKeyBase64);
-        logger.info("Public Key Bytes: " + publicKeyBytes);
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(publicKeyBytes);
-        logger.info("X509EncodedKeySpec: " + keySpec);
         return (RSAPublicKey) KeyFactory.getInstance("RSA").generatePublic(keySpec);
     }
 
-    private String sendEncryptedMessageToServer(String encryptedMessage) {
-        logger.info("Send Encrypted Message To Server");
+    private String sendEncryptedBlocksToServer(List<String> encryptedBlocks) {
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.TEXT_PLAIN);
-
-        HttpEntity<String> request = new HttpEntity<>(encryptedMessage, headers);
-
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<List<String>> request = new HttpEntity<>(encryptedBlocks, headers);
         RestTemplate restTemplate = new RestTemplate();
-        String serverUrl = "http://localhost:8081/receiveMessage";
-        String response = restTemplate.postForObject(serverUrl, request, String.class);
-        logger.info("Response: " + response);
-        try {
-            response = new String(response.getBytes(StandardCharsets.ISO_8859_1), "UTF-8"); // Декодирование из ISO-8859-1 в UTF-8
-            logger.info(("Decrypt response: " + response));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        return response;
+        String serverUrl = "http://localhost:8081/receiveFile";
+        return restTemplate.postForObject(serverUrl, request, String.class);
     }
 }
