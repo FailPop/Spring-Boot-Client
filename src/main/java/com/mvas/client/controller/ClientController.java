@@ -1,5 +1,6 @@
 package com.mvas.client.controller;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -16,6 +17,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.security.Security;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.X509EncodedKeySpec;
@@ -33,6 +35,7 @@ public class ClientController {
         try {
             System.out.println(message);
             List<String> encryptedBlocks = encryptWithServerPublicKey(message);
+            System.out.println(encryptedBlocks);
             String response = sendEncryptedBlocksToServer(encryptedBlocks);
             model.addAttribute("response", "Сообщение получено: " + response);
             System.out.println(response);
@@ -43,13 +46,15 @@ public class ClientController {
     }
 
     private List<String> encryptWithServerPublicKey(String message) throws Exception {
+        Security.addProvider(new BouncyCastleProvider());
+
         RestTemplate restTemplate = new RestTemplate();
         String serverUrl = "http://localhost:8081/getServerPublicKey";
         String serverPublicKeyBase64 = restTemplate.postForObject(serverUrl, null, String.class);
         RSAPublicKey serverPublicKey = decodeRSAPublicKey(serverPublicKeyBase64);
-        Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING");
+        Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWITHSHA-256ANDMGF1PADDING", "BC");
         cipher.init(Cipher.ENCRYPT_MODE, serverPublicKey);
-
+        System.out.println(cipher);
         byte[] messageBytes = message.getBytes(StandardCharsets.UTF_8);
         int inputLen = messageBytes.length;
         int blockSize = 245;
