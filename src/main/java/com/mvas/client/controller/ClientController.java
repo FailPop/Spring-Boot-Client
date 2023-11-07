@@ -27,8 +27,13 @@ import java.util.List;
 
 @Controller
 public class ClientController {
+
     private RSAPublicKey clientPublicKey;
     private RSAPrivateKey clientPrivateKey;
+    @GetMapping("/")
+    public String toIndex(){
+        return "index";
+    }
 
     @PostMapping("/sendMessage")
     public String sendMessage(@RequestBody String message, Model model) {
