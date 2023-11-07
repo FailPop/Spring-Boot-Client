@@ -35,3 +35,5 @@ Q.idea/sonarlint/securityhotspotstore/2/c/2cabb939da04d3de3a200bf2b575690e1a1631
 Q.idea/sonarlint/securityhotspotstore/8/6/863e0292fd7e9b3e74dafd6cc01f73ba76346482,0\c\0c4799549ebca80c86406fd218445fef27b61acc
 w
 G.idea/sonarlint/issuestore/4/8/4847adb2384ac463b1935cba63bc03f0abeb30f7,2\2\223bdf5f32fe80acb491cda194e61e64fb9bab93
+d
+4src/main/java/com/mvas/client/ClientApplication.java,a\2\a24ccd30ef559b5d4968917f1be6e37fac8be2ac

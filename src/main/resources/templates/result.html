@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Result Page</title>
+    <style>
+        textarea {
+            width: 45vw; /* Ширина поля вывода текста */
+            height: 90vh; /* Высота поля вывода текста */
+            resize: none; /* Отключаем возможность изменения размера */
+            overflow: auto; /* Включаем автоматическую прокрутку */
+        }
+    </style>
 </head>
 <body>
 <h1>Ответ от сервера</h1>
-<p th:text="${response}"></p>
+<textarea readonly th:text="${response}"></textarea>
 <a href="http://localhost:8080">Вернуться</a>
 </body>
 </html>
