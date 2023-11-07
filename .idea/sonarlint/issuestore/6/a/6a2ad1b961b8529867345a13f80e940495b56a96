@@ -1,21 +1,11 @@
 
-g	java:S112E"FDefine and throw a dedicated exception instead of using a generic one.(¼–ÕÌúÿÿÿÿ8ŒØôÓº1
->
-java:S55424"Use a secure padding scheme.(»¦µªúÿÿÿÿ8 ØôÓº1
-[
-java:S47197"9Replace charset name argument with StandardCharsets.UTF_8(üıØ™üÿÿÿÿ8 ØôÓº1
-r
-java:S1128
-"PRemove this unused import 'org.springframework.web.bind.annotation.RequestBody'.(â­½Àıÿÿÿÿ8çòüÓº1
+g	java:S112@"FDefine and throw a dedicated exception instead of using a generic one.(¼–ÕÌúÿÿÿÿ8€òÑÕº1
+L	java:S106 "+Replace this use of System.out by a logger.(øºÑûúÿÿÿÿ8“òÑÕº1
+F	java:S106""+Replace this use of System.out by a logger.(•¨Ú98“òÑÕº1
+L	java:S106$"+Replace this use of System.out by a logger.(˜Š¿Ûüÿÿÿÿ8“òÑÕº1
+9
+java:S55428"Use a secure padding scheme.(Ñ×ò×8›òÑÕº1
+V
+java:S4719:"9Replace charset name argument with StandardCharsets.UTF_8(ŠÚŸ8›òÑÕº1
 ^
-java:S1128"ARemove this unused import 'java.io.UnsupportedEncodingException'.(Ãµ…“8¥ØôÓº1
-[
-java:S1128">Remove this unused import 'java.nio.charset.StandardCharsets'.(ï˜ŞÛ8¥ØôÓº1
-O
-java:S1128"2Remove this unused import 'java.security.KeyPair'.(üúì›8¥ØôÓº1
-]
-java:S1128";Remove this unused import 'java.security.KeyPairGenerator'.(åÚ¼–úÿÿÿÿ8¥ØôÓº1
-O
-java:S1068 "3Remove this unused "clientPublicKey" private field.(Öã‰C8¥ØôÓº1
-Q
-java:S1068!"4Remove this unused "clientPrivateKey" private field.(Ãı¡¡8¥ØôÓº1
+java:S1128"<Remove this unused import 'javax.crypto.spec.SecretKeySpec'.(¹«è•üÿÿÿÿ8òÑÕº1
