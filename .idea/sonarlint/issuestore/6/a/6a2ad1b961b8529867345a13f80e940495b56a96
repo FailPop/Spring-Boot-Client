@@ -1,18 +1,18 @@
 
-g	java:S112K"FDefine and throw a dedicated exception instead of using a generic one.(¼–ÕÌúÿÿÿÿ8ÊÜá¶º1
-L	java:S106'"+Replace this use of System.out by a logger.(øºÑûúÿÿÿÿ8¤Ú¦Ğº1
-G	java:S106)"+Replace this use of System.out by a logger.(›Êÿ±8¥Ú¦Ğº1
-L	java:S106,"+Replace this use of System.out by a logger.(˜Š¿Ûüÿÿÿÿ8¥Ú¦Ğº1
-G	java:S106<"+Replace this use of System.out by a logger.(Öõù8ªÚ¦Ğº1
+g	java:S112K"FDefine and throw a dedicated exception instead of using a generic one.(¼–ÕÌúÿÿÿÿ8ÿ£Òº1
+L	java:S106'"+Replace this use of System.out by a logger.(øºÑûúÿÿÿÿ8•¤Òº1
+G	java:S106)"+Replace this use of System.out by a logger.(›Êÿ±8–¤Òº1
+L	java:S106,"+Replace this use of System.out by a logger.(˜Š¿Ûüÿÿÿÿ8–¤Òº1
+G	java:S106<"+Replace this use of System.out by a logger.(Öõù8š¤Òº1
 ^
-java:S1128"ARemove this unused import 'java.io.UnsupportedEncodingException'.(Ãµ…“8á¶ªĞº1
+java:S1128"ARemove this unused import 'java.io.UnsupportedEncodingException'.(Ãµ…“8¤Òº1
 W
-java:S1128"5Remove this unused import 'java.nio.charset.Charset'.(ü¶ØŸıÿÿÿÿ8á¶ªĞº1
+java:S1128"5Remove this unused import 'java.nio.charset.Charset'.(ü¶ØŸıÿÿÿÿ8¤Òº1
 O
-java:S1128"2Remove this unused import 'java.security.KeyPair'.(üúì›8á¶ªĞº1
+java:S1128"2Remove this unused import 'java.security.KeyPair'.(üúì›8¤Òº1
 ]
-java:S1128";Remove this unused import 'java.security.KeyPairGenerator'.(åÚ¼–úÿÿÿÿ8á¶ªĞº1
+java:S1128";Remove this unused import 'java.security.KeyPairGenerator'.(åÚ¼–úÿÿÿÿ8 ¤Òº1
 O
-java:S1068"3Remove this unused "clientPublicKey" private field.(Öã‰C8ÎêùÍº1
+java:S1068"3Remove this unused "clientPublicKey" private field.(Öã‰C8 ¤Òº1
 Q
-java:S1068"4Remove this unused "clientPrivateKey" private field.(Ãı¡¡8¯Ú¦Ğº1
+java:S1068"4Remove this unused "clientPrivateKey" private field.(Ãı¡¡8 ¤Òº1

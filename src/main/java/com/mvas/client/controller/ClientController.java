@@ -34,7 +34,7 @@ public class ClientController {
     }
 
     @PostMapping("/sendMessage")
-    public String sendMessage(@RequestBody String message, Model model) {
+    public String sendMessage(@RequestParam String message, Model model) {
         try {
             System.out.println(message);
             List<String> encryptedBlocks = encryptWithServerPublicKey(message);
