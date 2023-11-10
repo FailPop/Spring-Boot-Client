@@ -12,6 +12,7 @@ import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyFactory;
 import java.security.Security;
 import java.security.interfaces.RSAPublicKey;
@@ -55,7 +56,7 @@ public class ClientController {
         SecretKey aesKey = keyGen.generateKey();
         Cipher aesCipher = Cipher.getInstance("AES");
         aesCipher.init(Cipher.ENCRYPT_MODE, aesKey);
-        byte[] encryptedMessage = aesCipher.doFinal(message.getBytes("UTF-8"));
+        byte[] encryptedMessage = aesCipher.doFinal(message.getBytes(StandardCharsets.UTF_8));
 
         byte[] encryptedAesKey = rsaCipher.doFinal(aesKey.getEncoded());
         return Base64.getEncoder().encodeToString(encryptedAesKey) + ":" + Base64.getEncoder().encodeToString(encryptedMessage);

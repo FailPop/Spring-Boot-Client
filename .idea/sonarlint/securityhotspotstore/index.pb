@@ -9,14 +9,10 @@ w
 G.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec,8\6\863e0292fd7e9b3e74dafd6cc01f73ba76346482
 Å
 Q.idea/sonarlint/securityhotspotstore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec,2\c\2cabb939da04d3de3a200bf2b575690e1a16316d
-A
-Configurate.patch,0\d\0d5a6fd74379c5d08b5d4872566823fad7f7663b
 z
 Jsrc/main/java/com/mvas/client/config/MySpringMVCDispatcherServletInit.java,1\8\18c046b29aeb294335bb353c20243fd412730be3
 f
 6src/main/java/com/mvas/client/config/SpringConfig.java,8\8\884f789835b7330a304129232634d8973a55340a
-c
-3src/main/java/com/mvas/client/config/WebConfug.java,a\9\a90ba4424bf52c287c98a0c8be04520817015461
 c
 3src/main/java/com/mvas/client/config/WebConfig.java,1\9\19de212f942d194447c34612c8fbbc489c394ac8
 w
