@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Result Analyze</title>
     <style>
+        body {
+            background-color: #2e2e2e; /* Цвет фона */
+            color: #ffffff; /* Цвет текста */
+        }
         textarea {
-            width: 45vw; /* Ширина поля вывода текста */
-            height: 90vh; /* Высота поля вывода текста */
-            resize: none; /* Отключаем возможность изменения размера */
-            overflow: auto; /* Включаем автоматическую прокрутку */
+            width: 33.33vw;
+            height: 85vh;
+            resize: none;
+            overflow: auto;
+            background-color: #616161; /* Цвет фона текстового поля */
+            color: #ffffff; /* Цвет текста в текстовом поле */
+            border: 1px solid #ccc; /* Цвет рамки текстового поля */
         }
     </style>
 </head>
 <body>
-<h1>Response from the server</h1>
-<textarea readonly th:text="${response}"></textarea>
-<a href="http://localhost:8080">Return</a>
+<div class="OutputAnalyze">
+    <h1>Response from the server</h1>
+    <textarea readonly th:text="${response}"></textarea>
+    <a href="http://localhost:8080">Return</a>
+</div>
 </body>
 </html>
