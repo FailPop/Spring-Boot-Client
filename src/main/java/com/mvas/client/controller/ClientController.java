@@ -13,15 +13,25 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
-import java.security.KeyFactory;
-import java.security.Security;
+import java.security.*;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
 
 @Controller
 public class ClientController {
 
+    private RSAPrivateKey clientPrivateKey;
+    public ClientController() throws NoSuchAlgorithmException {
+        KeyPair keyPair = generateRSAKeyPair();
+        clientPrivateKey = (RSAPrivateKey) keyPair.getPrivate();
+        RSAPublicKey clientPublicKey = (RSAPublicKey) keyPair.getPublic();
+
+        sendClientPublicKeyToServer(clientPublicKey);
+    }
+    // Настройка адреса сайта
     @GetMapping("/")
     public String toIndex() {
         return "index";
@@ -30,18 +40,45 @@ public class ClientController {
     @PostMapping("/sendMessage")
     public String sendMessage(@RequestParam String message, Model model) {
         try {
-            System.out.println(message);
             String encryptedData = encryptWithServerPublicKey(message);
-            System.out.println(encryptedData);
             String response = sendEncryptedDataToServer(encryptedData);
-            System.out.println(response);
-            model.addAttribute("response", response);
+            String decryptedResponse = decryptWithClientPrivateKey(response);
+            model.addAttribute("response", decryptedResponse);
         } catch (Exception e) {
             model.addAttribute("response", "Error: " + e.getMessage());
         }
         return "result";
     }
+    private void sendClientPublicKeyToServer(RSAPublicKey publicKey) {
+        RestTemplate restTemplate = new RestTemplate();
+        String serverUrl = "http://localhost:8081/receiveClientPublicKey";
+        restTemplate.postForObject(serverUrl, Base64.getEncoder().encodeToString(publicKey.getEncoded()), String.class);
+    }
 
+    private String decryptWithClientPrivateKey(String encryptedData) throws Exception {
+        Security.addProvider(new BouncyCastleProvider());
+        String[] parts = encryptedData.split(":");
+
+        Cipher rsaCipher = Cipher.getInstance("RSA/None/OAEPWithSHA1AndMGF1Padding", "BC");
+        rsaCipher.init(Cipher.DECRYPT_MODE, clientPrivateKey);
+        byte[] encryptedAesKey = Base64.getDecoder().decode(parts[0]);
+        byte[] decryptedAesKey = rsaCipher.doFinal(encryptedAesKey);
+
+        SecretKeySpec aesKey = new SecretKeySpec(decryptedAesKey, "AES");
+        Cipher aesCipher = Cipher.getInstance("AES");
+        aesCipher.init(Cipher.DECRYPT_MODE, aesKey);
+        byte[] encryptedMessage = Base64.getDecoder().decode(parts[1]);
+        byte[] decryptedMessage = aesCipher.doFinal(encryptedMessage);
+
+        return new String(decryptedMessage, StandardCharsets.UTF_8);
+    }
+
+    private KeyPair generateRSAKeyPair() throws NoSuchAlgorithmException {
+        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+        keyGen.initialize(2048);
+        return keyGen.generateKeyPair();
+    }
+    // Шифрование с помощью AES и RSA методов шифрования
     private String encryptWithServerPublicKey(String message) throws Exception {
         Security.addProvider(new BouncyCastleProvider());
         RestTemplate restTemplate = new RestTemplate();
