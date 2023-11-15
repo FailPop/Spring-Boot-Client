@@ -6,34 +6,80 @@
     <title>Analyze code Java</title>
     <style>
         body {
-            background-color: #2e2e2e; /* Цвет фона */
-            color: #ffffff; /* Цвет текста */
+            background-color: #2e2e2e;
+            color: #fff;
         }
         textarea {
             width: 33.33vw;
             height: 85vh;
             resize: none;
             overflow: auto;
-            background-color: #616161; /* Цвет фона текстового поля */
-            color: #ffffff; /* Цвет текста в текстовом поле */
-            border: 1px solid #ccc; /* Цвет рамки текстового поля */
+            background-color: #616161;
+            color: #ffffff;
+            border: 1px solid #ccc;
+            min-height: 300px;
+            min-width: 500px;
         }
         button {
-            background-color: #4e586e; /* Цвет фона кнопки */
-            color: #fff; /* Цвет текста на кнопке */
-            border: none; /* Убираем рамку у кнопки */
+            background-color: #4e586e;
+            color: #fff;
+            border: none;
             border-radius: 5px 5px 5px 5px;
         }
         button:hover {
-            background-color: #333; /* Цвет фона кнопки при наведении */
+            background-color: #333;
+        }
+        .box1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+        .optionlanguage {
+            padding: 5px;
+            margin: 5px;
+        }
+        .info {
+            padding: 30px;
+            background-color: #4f4b4b;
         }
     </style>
 </head>
 <body>
-<h1>Write code</h1>
-<form action="/sendMessage" method="post" accept-charset="UTF-8">
-    <textarea type="text" name="message" placeholder="Your message" required></textarea>
-    <button type="submit">Send</button>
-</form>
+<h1>Analyze your Code</h1>
+<div class="box1">
+    <div class="optionlanguage">
+        <select name="language">
+            <option value="java">Java</option>
+            <option value="python">Python</option>
+            <option value="cpp">C++</option>
+            <option value="csharp">C#</option>
+        </select>
+    </div>
+    <form action="/sendMessage" method="post" accept-charset="UTF-8">
+        <textarea type="text" name="message" placeholder="Your message" required></textarea>
+        <button type="submit">Send</button>
+    </form>
+    <div class="info">
+        <h2>Информация об анализе</h2>
+        <p>Здесь вы можете узнать о различных методах анализа кода, которые мы используем, и другой полезной информации.</p>
+        <p>Мы используем следующие правила анализа кода:</p>
+        <ul>
+            <li>Проверка наличия табуляций в каждой строке</li>
+            <li>Проверка длины метода (не более 60 строк)</li>
+            <li>Проверка наличия пробелов после запятой, точки с запятой, приведения типов и условного оператора if</li>
+            <li>Проверка наличия пустых блоков кода</li>
+            <li>Проверка использования недопустимых типов</li>
+            <li>Проверка именования типов</li>
+            <li>Проверка наличия тега @since</li>
+            <li>Проверка наличия пробелов вокруг операторов присваивания</li>
+            <li>Проверка количества возвращаемых значений (не более 2 для не void методов и не более 1 для void методов)</li>
+            <li>Проверка порядка модификаторов</li>
+            <li>Проверка наличия недопустимых исключений в блоке catch</li>
+            <li>Проверка наличия пустых блоков catch</li>
+        </ul>
+        <p>Мы используем Spring-Boot версии 3.1.4 и Checkstyle версии 8.42 для анализа кода на Java. Анализ кода на C++, C# и Python будет доступен позже.</p>
+    </div>
+</div>
 </body>
 </html>
